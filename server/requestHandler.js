@@ -2,14 +2,13 @@ const httpHelpers = require('./http-helpers');
 
 const actions = {
   'GET': function (req, res) {
-    // httpHelpers.sendResponse(res, 'hello world');
     if (req.url === '/favicon.ico') {
       httpHelpers.sendResponse(res);
     }
     httpHelpers.serveContent(res, req.url);
   },
   'POST': function (req, res) {
-    httpHelpers.sendResponse(res, 'thanks for the message', 302);
+    httpHelpers.serveContent(res, req.url);
   }
 };
 
