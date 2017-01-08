@@ -20,6 +20,10 @@ module.exports.serveContent = (res, uri) => {
     if (err) {
       console.log(err);
     }
+    if (uri.slice(-4) === '.css') {
+      res.writeHead(200, {'Content-Type': 'text/css'});
+      res.end(data);
+    }
     module.exports.sendResponse(res, data);
   });
 };
