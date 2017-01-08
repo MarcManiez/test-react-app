@@ -2,10 +2,10 @@ const httpHelpers = require('./http-helpers');
 
 const actions = {
   'GET': function (req, res) {
-    
+    httpHelpers.sendResponse(res, 'hello world');
   },
   'POST': function (req, res) {
-    
+    httpHelpers.sendResponse(res, 'thanks for the message', 302);
   }
 };
 
