@@ -1,0 +1,7 @@
+@import url("../../node_modules/bootstrap/dist/css/bootstrap.min.css");
+
+form {
+    padding: 20px;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
