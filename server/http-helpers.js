@@ -35,3 +35,14 @@ module.exports.serveContent = (res, uri, callback) => {
     }
   });
 };
+
+module.exports.collectData = (req, callback) => {
+  let data = '';
+  console.log('is this thing even running?');
+  req.on('data', chunk => {
+    data += chunk;
+  });
+  req.on('end', () => {
+    callback(data);
+  });
+};

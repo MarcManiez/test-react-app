@@ -1,3 +1,4 @@
+const dbHelpers = require('../database/database-helpers');
 const httpHelpers = require('./http-helpers');
 
 const actions = {
@@ -16,7 +17,10 @@ const actions = {
     }
   },
   'POST': function (req, res) {
-    httpHelpers.serveContent(res, req.url);
+    httpHelpers.collectData(req, data => {
+      console.log(data);
+      httpHelpers.serveContent(res, req.url);
+    });
   }
 };
 
