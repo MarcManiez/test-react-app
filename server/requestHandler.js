@@ -3,9 +3,17 @@ const httpHelpers = require('./http-helpers');
 const actions = {
   'GET': function (req, res) {
     if (req.url === '/favicon.ico') {
-      httpHelpers.sendResponse(res);
+      httpHelpers.serveContent(res, req.url, data => {
+        httpHelpers.sendResponse(res, data, 200, {'Content-Type': 'image/x-icon'});
+      });
+      httpHelpers.sendResponse(res, 'favicon served');
+    } else if (req.url.slice(-4) === '.css') {
+      httpHelpers.serveContent(res, req.url, data => {
+        httpHelpers.sendResponse(res, data, 200, {'Content-Type': 'text/css'});
+      });
+    } else {
+      httpHelpers.serveContent(res, req.url);
     }
-    httpHelpers.serveContent(res, req.url);
   },
   'POST': function (req, res) {
     httpHelpers.serveContent(res, req.url);
@@ -20,6 +28,6 @@ module.exports = function (req, res) {
   if (action) {
     action(req, res);
   } else {
-    // send 404
+    httpHelpers.sendError(res);
   }
 };
