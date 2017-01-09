@@ -18,8 +18,10 @@ const actions = {
   },
   'POST': function (req, res) {
     httpHelpers.collectData(req, data => {
-      console.log(data);
-      httpHelpers.serveContent(res, req.url);
+      data = data.slice(4).split('+').join(' ');
+      dbHelpers.writeData(data, (rows, fields) => {
+        httpHelpers.serveContent(res, req.url);
+      });
     });
   }
 };
